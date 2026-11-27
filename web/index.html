@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0e14" />
+  <title>GorphinAI — Text-Based AI Coding &amp; Reasoning Assistant</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0e14;
+      --card: #131822;
+      --border: #232a3b;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #2f81f7;
+      --accent-hover: #1f6feb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { overflow-x: hidden; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      overflow-x: hidden;
+    }
+    header {
+      max-width: 1040px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+    .logo {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: linear-gradient(135deg, #2f81f7, #06b6d4);
+      display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; flex-shrink: 0;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px; padding: 10px 20px; border-radius: 11px;
+      background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; font-size: 15px;
+      transition: background 0.15s ease;
+    }
+    .btn:hover { background: var(--accent-hover); }
+    .btn-ghost {
+      background: transparent; border: 1px solid var(--border); color: var(--text);
+    }
+    main {
+      flex: 1;
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
+      padding: clamp(28px, 6vw, 56px) 20px 36px;
+      text-align: center;
+    }
+    h1 { font-size: clamp(26px, 6.5vw, 42px); line-height: 1.18; margin-bottom: 14px; letter-spacing: -0.02em; }
+    .sub { color: var(--muted); font-size: clamp(15px, 3.8vw, 17px); max-width: 680px; margin: 0 auto 28px; }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+      gap: 14px;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .card h3 { font-size: 16px; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 14px; }
+    .compliance {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: left;
+      margin-top: 14px;
+    }
+    .compliance h2 { font-size: 17px; margin-bottom: 8px; }
+    .compliance p { color: var(--muted); font-size: 14px; margin-bottom: 8px; word-break: break-word; }
+    .compliance code { background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 5px; font-size: 13px; }
+    footer {
+      max-width: 1040px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    footer a { color: var(--muted); text-decoration: none; padding: 6px 0; }
+    footer a:hover { color: var(--text); }
+    @media (max-width: 560px) {
+      .cta-row .btn { width: 100%; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">G</div>
+      <span>GorphinAI</span>
+    </div>
+    <a class="btn" href="/chat">Open App</a>
+  </header>
+
+  <main>
+    <h1>Text-Based AI Assistant for Coding, Reasoning &amp; Productivity</h1>
+    <p class="sub">
+      GorphinAI 1.0 is a text-only conversational AI workspace developed by the Gorphin Team.
+      It helps developers, students, and researchers write code, debug software, analyze documentation,
+      and organize technical knowledge in English, Ukrainian, and Russian.
+    </p>
+    <div class="cta-row">
+      <a class="btn" href="/chat">Launch GorphinAI</a>
+      <a class="btn btn-ghost" href="/loadup">LoadUP Pre-Order</a>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Step-by-Step Reasoning</h3>
+        <p>Dedicated &lt;think&gt; mode for software architecture, algorithm design, debugging, and structured problem solving.</p>
+      </div>
+      <div class="card">
+        <h3>Web &amp; GitHub Context</h3>
+        <p>Fetch and summarize public documentation URLs and GitHub source files directly inside your text chat.</p>
+      </div>
+      <div class="card">
+        <h3>Simple Authentication &amp; Plans</h3>
+        <p>Sign in with Email, Google, or GitHub. Start free with daily quotas or upgrade anytime.</p>
+      </div>
+    </div>
+
+    <div class="compliance">
+      <h2>Application Purpose &amp; Google API Compliance</h2>
+      <p>
+        <strong>Text-Only Assistant:</strong> GorphinAI is strictly a text-based AI chat and coding assistant.
+        It does <strong>not</strong> generate images, video, or audio, and does <strong>not</strong> use Google APIs for
+        AI-generated Non-Consensual Intimate Imagery (NCII) or any harmful/illegal content.
+      </p>
+      <p>
+        <strong>Google OAuth Usage:</strong> Google Sign-In is used exclusively to authenticate users via their
+        <code>email</code> and basic <code>profile</code> name. For full details, see our
+        <a href="/privacy.html" style="color:var(--accent)">Privacy Policy</a> and
+        <a href="/terms.html" style="color:var(--accent)">Terms of Service</a>.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <span>&copy; 2026 GorphinAI — Developed by the Ukrainian team Gorphin</span>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Service</a>
+    </div>
+  </footer>
+</body>
+</html>

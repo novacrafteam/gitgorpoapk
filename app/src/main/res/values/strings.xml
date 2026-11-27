@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GorphinAI</string>
+    <string name="cd_open_drawer">Open navigation drawer</string>
+    <string name="cd_close_drawer">Close navigation drawer</string>
+    <string name="cd_navigate_back">Navigate back</string>
+    <string name="cd_settings">Settings</string>
+    <string name="cd_plans">Subscription plans</string>
+    <string name="cd_send_message">Send message</string>
+    <string name="cd_delete_chat">Delete chat</string>
+    <string name="cd_copy_code">Copy code</string>
+    <string name="cd_toggle_password">Toggle password visibility</string>
+    <string name="cd_app_logo">GorphinAI logo</string>
+</resources>

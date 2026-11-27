@@ -1,0 +1,6 @@
+{
+  "name": "GorphinAI",
+  "description": "GorphinAI mobile Android app and mobile-optimized web client for text-based AI coding, <think> reasoning, web/GitHub analysis, and subscription management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

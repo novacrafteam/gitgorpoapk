@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
+  <meta name="theme-color" content="#0b0e14" />
+  <title>GorphinAI</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- AUTH VIEW -->
+  <div id="authScreen" class="auth-screen hidden">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="brand-row">
+          <div class="logo">G</div>
+          <div>
+            <h1>GorphinAI</h1>
+            <p class="muted" data-i18n="brandSubtitle">Разработано украинской командой Gorphin</p>
+          </div>
+        </div>
+        <select id="authLangSelect" class="lang-mini" aria-label="Language">
+          <option value="ru">RU</option>
+          <option value="uk">UA</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+
+      <div class="auth-tabs">
+        <button id="tabLogin" class="auth-tab active" type="button" data-i18n="loginTab">Вход</button>
+        <button id="tabRegister" class="auth-tab" type="button" data-i18n="registerTab">Регистрация</button>
+      </div>
+
+      <form id="authForm" class="auth-form">
+        <label id="usernameField" class="field hidden">
+          <span data-i18n="usernameLabel">Имя пользователя</span>
+          <input id="authUsername" type="text" maxlength="40" autocomplete="username" placeholder="Alex" />
+        </label>
+        <label class="field">
+          <span data-i18n="emailLabel">Email</span>
+          <input id="authEmail" type="email" required autocomplete="email" inputmode="email" placeholder="you@example.com" />
+        </label>
+        <label class="field">
+          <span data-i18n="passwordLabel">Пароль</span>
+          <input id="authPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="••••••••" />
+        </label>
+        <div id="authError" class="form-error hidden"></div>
+        <button id="authSubmitBtn" class="btn btn-primary btn-full" type="submit" data-i18n="loginBtn">Войти</button>
+      </form>
+      <div class="oauth-divider">or continue with</div>
+      <div class="oauth-row">
+        <button id="oauthGoogleBtn" class="btn btn-outline btn-full" type="button">Google</button>
+        <button id="oauthGithubBtn" class="btn btn-outline btn-full" type="button">GitHub</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN PRODUCTION APP -->
+  <div id="mainApp" class="layout hidden">
+    <aside id="sidebar" class="sidebar" aria-label="Chat history">
+      <div class="sidebar-top">
+        <div class="sidebar-brand-head">
+          <div class="brand-row">
+            <div class="logo">G</div>
+            <div>
+              <div class="brand-title">GorphinAI <span class="ver">1.0</span></div>
+              <div class="brand-sub" data-i18n="brandShort">by Gorphin Team</div>
+            </div>
+          </div>
+          <button id="closeSidebarBtn" class="icon-btn mobile-only" type="button" aria-label="Close sidebar">✕</button>
+        </div>
+        <button id="newChatBtn" class="btn btn-primary btn-full" type="button" data-i18n="newChat">+ Новый чат</button>
+      </div>
+
+      <div id="chatList" class="chat-list"></div>
+
+      <div class="sidebar-footer">
+        <div class="quota-card">
+          <div class="quota-head">
+            <span id="userPlanBadge" class="plan-badge plan-free">Free</span>
+            <button id="openPlansBtn" class="link-btn" type="button" data-i18n="upgradeBtn">Тарифы</button>
+          </div>
+          <div class="quota-lines">
+            <div class="quota-row">
+              <span data-i18n="qMessages">Сообщения (24ч / 4ч)</span>
+              <strong id="qMsgVal">0/15 · 0/5</strong>
+            </div>
+            <div class="quota-row">
+              <span data-i18n="qThink">Thinking (&lt;think&gt;)</span>
+              <strong id="qThinkVal">0/2</strong>
+            </div>
+            <div class="quota-row">
+              <span data-i18n="qWeb">Веб / URL / GitHub</span>
+              <strong id="qWebVal">0/3</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="user-bar">
+          <div class="user-info">
+            <div id="sidebarUsername" class="user-name">User</div>
+            <div id="sidebarEmail" class="user-email">user@example.com</div>
+          </div>
+          <button id="openSettingsBtn" class="icon-btn" type="button" title="Settings" aria-label="Settings">⚙</button>
+        </div>
+      </div>
+    </aside>
+
+    <div id="sidebarBackdrop" class="backdrop hidden"></div>
+
+    <section class="workspace">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="mobileMenuBtn" class="icon-btn mobile-only" type="button" aria-label="Open menu">☰</button>
+          <h2 id="currentChatTitle" class="chat-heading">GorphinAI</h2>
+        </div>
+        <div class="topbar-right">
+          <button id="topPlansBtn" class="btn btn-outline btn-sm" type="button" data-i18n="tariffsTitle">Тарифы</button>
+          <button id="topSettingsBtn" class="icon-btn" type="button" title="Settings" aria-label="Settings">⚙</button>
+        </div>
+      </header>
+
+      <div id="renewBanner" class="renew-banner hidden">
+        <span id="renewText"></span>
+        <button id="renewBtn" class="btn btn-primary btn-sm" type="button" data-i18n="renewBtn">Продлить (+30 дней)</button>
+      </div>
+
+      <main id="chatLog" class="chat-log">
+        <div id="welcomeBox" class="welcome">
+          <div class="logo logo-lg">G</div>
+          <h2 data-i18n="welcomeTitle">Чем могу помочь сегодня?</h2>
+          <p data-i18n="welcomeSub">Универсальный ИИ-ассистент с режимом размышлений (&lt;think&gt;), поиском в интернете и анализом кода/URL.</p>
+        </div>
+      </main>
+
+      <form id="chatForm" class="composer-wrap">
+        <div class="composer-box">
+          <textarea
+            id="promptInput"
+            rows="1"
+            enterkeyhint="send"
+            data-i18n-placeholder="inputPlaceholder"
+            placeholder="Напишите сообщение или вставьте ссылку / GitHub URL..."
+          ></textarea>
+          <div class="composer-toolbar">
+            <div class="tool-pills">
+              <button id="thinkBtn" class="pill pill-auto" type="button"></button>
+              <button id="webBtn" class="pill" type="button"></button>
+            </div>
+            <button id="sendBtn" class="btn btn-primary send-btn" type="submit" data-i18n="sendBtn">Отправить</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- SETTINGS MODAL -->
+  <div id="settingsModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 data-i18n="settingsTitle">Настройки</h3>
+        <button class="close-modal icon-btn" data-close="settingsModal" type="button" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <label class="field">
+          <span data-i18n="interfaceLang">Язык интерфейса и ответов</span>
+          <select id="settingsLangSelect">
+            <option value="en">🇬🇧 English</option>
+            <option value="uk">🇺🇦 Українська</option>
+            <option value="ru">🇷🇺 Русский</option>
+          </select>
+        </label>
+        <label class="field">
+          <span data-i18n="usernameLabel">Имя пользователя</span>
+          <input id="settingsUsername" type="text" maxlength="40" />
+        </label>
+        <div id="settingsSavedMsg" class="saved-msg hidden" data-i18n="savedMsg">Сохранено!</div>
+      </div>
+      <div class="modal-foot">
+        <button id="logoutBtn" class="btn btn-danger" type="button" data-i18n="logoutBtn">Выйти из аккаунта</button>
+        <button id="saveSettingsBtn" class="btn btn-primary" type="button" data-i18n="saveBtn">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARIFFS / PAYGATE.TO MODAL -->
+  <div id="plansModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card modal-wide">
+      <div class="modal-head">
+        <div>
+          <h3 data-i18n="tariffsTitle">Тарифные планы GorphinAI</h3>
+          <p class="muted small" data-i18n="tariffsSubtitle">Безопасная оплата картой или криптовалютой через PayGate.to</p>
+        </div>
+        <button class="close-modal icon-btn" data-close="plansModal" type="button" aria-label="Close">✕</button>
+      </div>
+      <div class="billing-toggle-row">
+        <button id="billMonthly" class="bill-btn active" type="button" data-i18n="monthly">Помесячно</button>
+        <button id="billYearly" class="bill-btn" type="button" data-i18n="yearly">На год (выгоднее)</button>
+      </div>
+      <div id="plansError" class="form-error hidden"></div>
+      <div id="plansGrid" class="plans-grid"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
